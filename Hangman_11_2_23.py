@@ -7,27 +7,20 @@ words = ['abjure', 'future', 'picnic', 'agonistic', 'garland', 'protect', 'airli
 # Pick a random word
 answer = random.choice(words)
 
-print(answer) # Not needed but kept for testing
-
 # Creates a variable to display letters as the user guesses
 placeholder = "-" * len(answer)
 
-print(placeholder) # Not needed but kept for testing
+# Tries
+tries = 0
 
-# Letting the user guess the entire word
-guess = input("Guess the word: ").lower()
+guess = ""
+while guess != answer and placeholder != answer:
+    print(placeholder)
+    guess = input("Guess: ").lower()
 
-if guess == answer:
-    print("Nice job")
+    if len(guess) == 1:
+        for i in range(len(answer)):
+            if guess == answer[i]:
+                placeholder = placeholder[:i] + guess + placeholder[i+1:]
 
-else:
-    print("Try again")
-
-# Letting the user guess one letter
-guess = input("Guess a letter: ").lower()
-
-for i in range(len(answer)):
-    if guess == answer[i]:
-        placeholder = placeholder[:i] + guess + placeholder[i+1:]
-
-print(placeholder)
+print(f"Nice job! The word was {answer}")
