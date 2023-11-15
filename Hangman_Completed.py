@@ -6,7 +6,7 @@ words = ['abjure', 'future', 'picnic', 'agonistic', 'garland', 'protect', 'airli
 
 # Pick a random word
 answer = random.choice(words)
-
+print(answer)
 # Creates a variable to display letters as the user guesses
 placeholder = "-" * len(answer)
 
@@ -14,13 +14,19 @@ placeholder = "-" * len(answer)
 tries = 0
 
 guess = ""
-while guess != answer and placeholder != answer:
+while guess != answer and placeholder != answer and tries < 7:
     print(placeholder)
+    print(f"You have {7-tries} tries left")
     guess = input("Guess: ").lower()
+    tries += 1
 
     if len(guess) == 1:
         for i in range(len(answer)):
             if guess == answer[i]:
                 placeholder = placeholder[:i] + guess + placeholder[i+1:]
 
-print(f"Nice job! The word was {answer}")
+if guess == answer or placeholder == answer:
+    print(f"Nice job! The word was {answer}")
+
+else:
+    print(f"Good try, the word was {answer}")
